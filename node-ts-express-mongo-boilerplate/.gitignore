@@ -1,0 +1,12 @@
+.env
+node_modules
+**/.idea
+
+build/*
+coverage/*
+.nyc_output/*
+logs/*
+*.log
+npm-debug.log
+
+dbdata/*
