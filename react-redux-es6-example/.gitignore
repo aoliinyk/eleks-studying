@@ -7,6 +7,7 @@ lib-cov
 
 logs
 *.log
+npm-debug.log*
 
 coverage/*
 build/*
