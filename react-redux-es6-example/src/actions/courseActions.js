@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import courseApi from '../api/mockCourseApi';
-// import {beginAjaxCall} from './ajaxStatusActions';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 // action creator
 // export function createCourse(course) {
@@ -22,7 +22,7 @@ export function updateCourseSuccess(course) {
 // for redux-thunk
 export function loadCourses() {
   return function(dispatch) {
-    // dispatch(beginAjaxCall());
+    dispatch(beginAjaxCall());
     return courseApi.getAllCourses().then(courses => {
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
@@ -33,7 +33,7 @@ export function loadCourses() {
 
 export function saveCourse(course) {
   return function (dispatch, getState) {
-    // dispatch(beginAjaxCall());
+    dispatch(beginAjaxCall());
     return courseApi.saveCourse(course).then(course => {
       course.id ? dispatch(updateCourseSuccess(course)) :
         dispatch(createCourseSuccess(course));
