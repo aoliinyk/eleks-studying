@@ -19,7 +19,7 @@ export function updateCourseSuccess(course) {
   return {type: types.UPDATE_COURSE_SUCCESS, payload: course};
 }
 
-// for redux-thunk
+// redux-thunk
 export function loadCourses() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
@@ -31,6 +31,7 @@ export function loadCourses() {
   };
 }
 
+// redux-thunk
 export function saveCourse(course) {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall());
