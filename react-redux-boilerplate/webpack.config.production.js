@@ -1,15 +1,18 @@
 const webpack = require('webpack');
 const path = require('path');
+const EncodingPlugin = require('webpack-encoding-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('production')
+};
 
 module.exports = {
   debug: true,
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   noInfo: false,
-  entry: [
-    'webpack-hot-middleware/client?reload=true', // reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index')
-  ],
+  entry: path.resolve(__dirname, 'src/index'),
   target: 'web',
   output: {
     path: path.join(__dirname, 'dist'),
@@ -18,14 +21,17 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'src')
+    contentBase: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new EncodingPlugin('utf8'),
+    new webpack.DefinePlugin(GLOBALS),
     new HtmlWebpackPlugin({
       template: 'src/index.ejs'
-    })
+    }),
+    new ExtractTextPlugin('styles.css'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [
@@ -36,7 +42,7 @@ module.exports = {
       },
       {
         test: /(\.css)$/,
-        loaders: ['style', 'css']
+        loader: ExtractTextPlugin.extract('css?sourceMap')
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
