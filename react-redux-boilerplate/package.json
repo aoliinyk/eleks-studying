@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "Frontend for eleks games booking",
   "scripts": {
+    "dev": "babel-node tools/devServer.js",
     "dev:webpack": "webpack-dev-server --hot --inline --progress --colors --devtool eval --env=develop --port=8000",
-    "lint": "esw webpack.config.* ./src --ext .js --ext .jsx",
+    "lint": "esw webpack.config.* ./tools ./src --ext .js --ext .jsx",
     "lint:watch": "npm run lint -- --watch"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
     "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
     "jquery": "^3.1.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -18,7 +20,8 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -39,9 +42,10 @@
     "eslint-plugin-react": "^6.8.0",
     "eslint-watch": "^2.1.14",
     "expect": "^1.20.2",
-    "express": "^4.14.0",
     "file-loader": "^0.9.0",
     "nock": "^9.0.2",
+    "npm-run-all": "^3.1.2",
+    "open": "0.0.5",
     "react-addons-test-utils": "^15.4.1",
     "redux-immutable-state-invariant": "^1.2.4",
     "redux-mock-store": "^1.2.1",
