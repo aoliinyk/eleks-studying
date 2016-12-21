@@ -27,7 +27,8 @@ module.exports = {
     new EncodingPlugin('utf8'),
     new webpack.DefinePlugin(GLOBALS),
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs'
+      template: path.join(__dirname, 'src/index.ejs'),
+      favicon: path.join(__dirname, 'images/favicon.ico')
     }),
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin(),
@@ -43,6 +44,14 @@ module.exports = {
       {
         test: /(\.css)$/,
         loader: ExtractTextPlugin.extract('css?sourceMap')
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'url?limit=1000000'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

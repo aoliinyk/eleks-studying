@@ -24,7 +24,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs'
+      template: path.join(__dirname, 'src/index.ejs'),
+      favicon: path.join(__dirname, 'images/favicon.ico')
     })
   ],
   module: {
@@ -37,6 +38,14 @@ module.exports = {
       {
         test: /(\.css)$/,
         loaders: ['style', 'css']
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'url?limit=1000000'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
