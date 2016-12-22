@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   debug: true,
@@ -26,6 +27,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index.ejs'),
       favicon: path.join(__dirname, 'images/favicon.ico')
+    }),
+    new ExtractTextPlugin('dist/style.css', {
+      allChunks: true
     })
   ],
   resolve: {
@@ -41,6 +45,13 @@ module.exports = {
       {
         test: /(\.css)$/,
         loaders: ['style', 'css']
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css?sourceMap!sass?sourceMap'
+        )
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,

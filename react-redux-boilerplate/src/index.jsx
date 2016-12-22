@@ -7,9 +7,9 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 import {loadSamples} from './actions/sampleActions';
 
-import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
+import './styles/styles.scss';
 
 const store = configureStore();
 store.dispatch(loadSamples());
