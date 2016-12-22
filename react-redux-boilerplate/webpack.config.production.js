@@ -45,15 +45,8 @@ module.exports = {
         loaders: ['babel', 'eslint']
       },
       {
-        test: /(\.css)$/,
-        loader: ExtractTextPlugin.extract('css?sourceMap')
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css?sourceMap!sass?sourceMap'
-        )
+        test: /\.s?css$/,
+        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
