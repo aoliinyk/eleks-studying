@@ -28,10 +28,13 @@ module.exports = {
       favicon: path.join(__dirname, 'images/favicon.ico')
     })
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [
       {
-        test: /\.js(x)?$/,
+        test: /\.jsx?$/,
         include: path.join(__dirname, 'src'),
         loaders: ['babel', 'eslint']
       },

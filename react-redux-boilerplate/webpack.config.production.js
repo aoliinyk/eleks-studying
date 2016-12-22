@@ -23,6 +23,9 @@ module.exports = {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist')
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   plugins: [
     new EncodingPlugin('utf8'),
     new webpack.DefinePlugin(GLOBALS),
