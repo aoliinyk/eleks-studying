@@ -1,1 +1,1 @@
-# eleks-studying
+# studying-repo
